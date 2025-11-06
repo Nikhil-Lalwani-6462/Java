@@ -118,4 +118,21 @@ public class EmployeeDao {
     }
     return status;
 }
+    public static int deleteRecords(Employee emp){
+        int status = 0;
+        PreparedStatement pst;
+        String query;
+        query = "delete from employee where id = ?";
+        try{
+            Connection con = getConnection();
+            pst = con.prepareStatement(query);
+            pst.setInt(1,emp.getId());
+            status = pst.executeUpdate();
+            
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        return status;
+    }
 }
